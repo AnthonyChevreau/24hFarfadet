@@ -19,15 +19,21 @@
         <input type="checkbox">
         <span class="slider round"></span>
       </label>
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Quelle lampe voulez vous?
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Laumio_D454DB</a>
-        <a class="dropdown-item" href="#">Laumio_D454DB</a>
-        <a class="dropdown-item" href="#">Laumio_D454DB</a>
-        <a class="dropdown-item" href="#">Laumio_D454DB</a>
-      </div>
+      <form action="/testihm" method="post" >
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Quelle lampe voulez vous?
+        </button>
+        <select name="nom">
+          <option value="Laumio_D454DB">
+            "Laumio_D454DB"
+          </option>
+        </select>
+        <input type="submit" value="envoyer"/>
+
+
+      </form>
+
+
     </div>
     <div class="container">
       <button type="button" class="btn">Blanc</button>
