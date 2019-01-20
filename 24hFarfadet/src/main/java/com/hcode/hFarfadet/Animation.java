@@ -47,7 +47,8 @@ public class Animation {
 
         System.out.println("Syntaxe :");
         System.out.println(" - SELECT [(lampes_id) | (lampes_list)]");
-        System.out.println(" - LAUNCH [(action_id) | (actions list)]");
+        System.out.println(" - LAUNCH [(action_id) | (actions_list)]");
+        System.out.println(" - DETECT [(category)] [(sensor)]");
         System.out.println(" - QUIT");
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -69,7 +70,7 @@ public class Animation {
                         System.out.println("Ligths succefully saved");
                     }
                     else {
-                        System.out.println("Error : missing arguments (id_lampes)");
+                        System.out.println("Error : missing arguments (id_lampes)...");
                     }
                     break;
 
@@ -84,6 +85,24 @@ public class Animation {
                         mesActions.clear();
                         //Inform user
                         System.out.println("Animation terminated.");
+                    }
+                    else {
+                        System.out.println("Error : missing arguments (id_actions)...");
+                    }
+                    break;
+
+                case "DETECT" :
+                    if(arguments.length > 1) {
+                        String str_topic = "atmosphere/temperature";
+                        // subscribe to topic
+                        try {
+                            myClient.subscribe(str_topic);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        //Inform user
+                        System.out.println("Start to get temperature data.");
+
                     }
                     else {
                         System.out.println("Error : missing arguments (id_actions)");
