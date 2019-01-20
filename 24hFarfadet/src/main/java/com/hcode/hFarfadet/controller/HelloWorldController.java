@@ -77,6 +77,37 @@ public class HelloWorldController {
 
         return "testihm2";
     }
+    @RequestMapping(value = "/test-ihm2", method = {RequestMethod.POST, RequestMethod.GET})
+    public String testIhm3Submit(@RequestParam(name="nom", required = false, defaultValue = "none") String nom, Lampe lampe) throws MqttException {
 
+
+        lampe.setNom(nom);
+
+        System.out.println(lampe.getNom());
+
+
+
+        connOpt = new MqttConnectOptions();
+        connOpt.setCleanSession(true);
+        connOpt.setKeepAliveInterval(30);
+
+        String clientID = "";
+        Callback call = new Callback();
+
+        Animation anim = new Animation();
+
+        myClient = new MqttClient(BROKER_URL, clientID);
+        myClient.setCallback(call);
+        myClient.connect(connOpt);
+
+        List<String> mesLampes = new ArrayList<String>();
+        mesLampes.add(lampe.getNom());
+        try {
+            anim.playActions(myClient, mesLampes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "testihm2";
+    }
 
 }
