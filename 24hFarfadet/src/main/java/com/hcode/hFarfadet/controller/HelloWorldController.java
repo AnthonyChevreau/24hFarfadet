@@ -30,12 +30,12 @@ public class HelloWorldController {
         return "testihm";
     }*/
 
-    @RequestMapping(value = "/testihm", method = {RequestMethod.POST, RequestMethod.GET})
+   /* @RequestMapping(value = "/test-ihm2", method = {RequestMethod.POST, RequestMethod.GET})
     public String testIhmSubmit(@RequestParam(name="nom", required = false, defaultValue = "none") String nom, Lampe lampe){
         lampe.setNom(nom);
         System.out.println(nom);
-        return "testihm";
-    }
+        return "testihmBeau";
+    }*/
     @RequestMapping(value = "/testihm2", method = {RequestMethod.POST, RequestMethod.GET})
     public String testIhm2Submit(@RequestParam(name="nom", required = false, defaultValue = "none") String nom,
                                 @RequestParam(name="blue", required = false, defaultValue = "255") String blue,
@@ -75,7 +75,7 @@ public class HelloWorldController {
 
         anim.fill(myClient,lampe.getNom(),lampe.getRed(),lampe.getGreen(),lampe.getBlue());
 
-        return "testihm2";
+        return "testihmBeau";
     }
     @RequestMapping(value = "/testihmBeau2", method = {RequestMethod.POST, RequestMethod.GET})
     public String testIhm3Submit(@RequestParam(name="nom", required = false, defaultValue = "none") String nom,
@@ -142,7 +142,7 @@ public class HelloWorldController {
 
 
         }
-        return("/testihmBeau2");
+        return("/testihmBeau");
 
 
     }
