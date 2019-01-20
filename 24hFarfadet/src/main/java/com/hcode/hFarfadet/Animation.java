@@ -2,6 +2,8 @@ package com.hcode.hFarfadet;
 
 import org.eclipse.paho.client.mqttv3.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,12 +34,68 @@ public class Animation {
         Animation anim = new Animation();
 
         List<String> mesLampes = new ArrayList<String>();
-        mesLampes.add("Laumio_0FC168");
-        mesLampes.add("Laumio_107DA8");
-        //mesLampes.add("Laumio_104A13");
-        mesLampes.add("Laumio_CD0522");
+        List<Integer> mesActions = new ArrayList<Integer>();
 
-        anim.playActions(myClient, mesLampes);
+        System.out.println("************ LAUMIOS CONSOLE APPLICATION *************");
+        System.out.println("***      Group: Les Farfadets Pimpants             ***");
+        System.out.println("***      Author: P. Le Berre                       ***");
+        System.out.println("***              R. Bansard                        ***");
+        System.out.println("***              D. Mauget                         ***");
+        System.out.println("***              A. Chevreau                       ***");
+        System.out.println("***              C. Talarmin                       ***");
+        System.out.println("******************************************************");
+
+        System.out.println("Syntaxe :");
+        System.out.println(" - SELECT [(lampes_id) | (lampes_list)]");
+        System.out.println(" - LAUNCH [(action_id) | (actions list)]");
+        System.out.println(" - QUIT");
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String cmd = "";
+        String[] arguments;
+
+        while(!(cmd = bf.readLine()).equals("QUIT")) {
+            arguments = cmd.split(" ");
+            switch (arguments[0]) {
+                case "SELECT" :
+                    if(arguments.length > 1) {
+                        //Clear lights recorded
+                        mesLampes.clear();
+                        //Add selected light(s)
+                        for(int i=1; i<arguments.length; i++) {
+                            mesLampes.add(arguments[i]);
+                        }
+                        //Inform user
+                        System.out.println("Ligths succefully saved");
+                    }
+                    else {
+                        System.out.println("Error : missing arguments (id_lampes)");
+                    }
+                    break;
+
+                case "LAUNCH" :
+                    if(arguments.length > 1) {
+                        //Add selected action(s)
+                        for(int i=1; i<arguments.length; i++) {
+                            mesActions.add(Integer.parseInt(arguments[i]));
+                        }
+                        anim.playActions(myClient, mesLampes, mesActions);
+                        //Clear actions recorded
+                        mesActions.clear();
+                        //Inform user
+                        System.out.println("Animation terminated.");
+                    }
+                    else {
+                        System.out.println("Error : missing arguments (id_actions)");
+                    }
+                    break;
+
+                default: System.out.println("Error : syntax error...");
+            }
+
+        }
+        System.out.println("End of application.");
+        System.exit(0);
 
     }
 
@@ -139,26 +197,7 @@ public class Animation {
         client.publish(str_topic, new MqttMessage(myMessage.getBytes()));
     }
 
-    public void playActions(MqttClient myClient, List<String> lampes) throws Exception{
-
-        List<Integer> actions = new ArrayList<Integer>();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Veuillez saisir une action à réaliser : ");
-        System.out.println("0 : éteindre la lampe");
-        System.out.println("1 : choisir la couleur rouge");
-        System.out.println("2 : allumer la couleur verte");
-        System.out.println("3 : allumer la couleur bleue");
-        System.out.println("4 : effet arc-en-ciel");
-        System.out.println("5 : allumer la lampe");
-        System.out.println("9 : fin de l\'animation");
-        int choix = 0;
-        while (choix != 9) {
-            choix = sc.nextInt();
-            if (choix != 9) {
-                actions.add(choix);
-            }
-        }
+    public void playActions(MqttClient myClient, List<String> lampes, List<Integer> actions) throws Exception{
 
         for(Integer i: actions) {
             for(String l: lampes){
