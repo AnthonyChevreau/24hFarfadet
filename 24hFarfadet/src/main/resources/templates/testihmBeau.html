@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style1.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="jumbotron text-center">
+            <h1>Haum Sweet Ohm</h1>
+            <p>Les Farfadets Pimpants</p> 
+        </div>
+
+        <form action = "/testihm2" method="post">
+
+            <fieldset class="fieldset1">
+                <legend class="scheduler-border">Allumer une lampe</legend>
+                <div class="container input-group-prepend double">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="entete">Choisir sa lampe</span>
+                    </div>
+                    <select name = "nom" class="custom-select mb-8" id="champ">
+                        <option value="Laumio_10805F">Laumio_10805F</option>
+                        <option value="Laumio_88813D">Laumio_88813D</option>
+                        <option value="Laumio_104F03">Laumio_104F03</option>
+                        <option value="Laumio_D454DB">Laumio_D454DB</option>
+                        <option value="Laumio_CD0522">Laumio_CD0522</option>
+                        <option value="Laumio_0FBFBF">Laumio_0FBFBF</option>
+                        <option value="Laumio_0FC168">Laumio_0FC168</option>
+                        <option value="Laumio_104A13">Laumio_104A13</option>
+                        <option value="Laumio_107DA8">Laumio_107DA8</option>
+                        <option value="Laumio_10508F">Laumio_10508F</option>
+                        <option value="Laumio_1D9486">Laumio_1D9486</option>
+                        <option value="Laumio_439BA9">Laumio_439BA9</option>
+                    </select>
+
+
+                </div>
+                <div class="form-group double">
+                    <label style="color: red;">Rouge :      <input type="text" class="form-control" value="255" name="red"></input></label>
+                </div>
+            <div class="form-group double">
+                <label style="color: green;">Vert :       <input type="text" class="form-control" value="255" name="green"></input></label>
+            </div>
+        <div class="form-group double">
+            <label style="color: blue;">Bleu :       <input type="text" class="form-control" value="255" name="blue"></input></label>
+        </div>
+    </div>
+<div class="container double">
+    <button type="submit" class="btn btn-primary col-sm-10">Appliquer</button>
+</div>
+</fieldset>
+
+
+
+<fieldset class="fieldset1">
+    <legend>Lancer une animation</legend>
+    <div class="container double">
+        <button type="button" class="btn btn-primary col-sm-10">Animation</button>
+    </div>
+
+</fieldset>    
+
+<fieldset class="fieldset1">
+    <legend>Capteur de distance</legend>
+    <div class="container double">
+        <button type="button" class="btn btn-primary col-sm-5">Statut</button>
+        <button type="button" class="btn btn-primary col-sm-5">Valeur</button>
+    </div>
+
+</fieldset>
+
+
+<hr>
+<fieldset class="fieldset1">
+    <legend>Capteur de température</legend>
+    <div class="container double">
+        <button type="button" class="btn btn-primary col-sm-5">Statut</button>
+        <button type="button" class="btn btn-primary col-sm-5">Valeur</button>
+    </div>
+</fieldset>
+
+
+
+</form>
+
+<div class="jumbotron text-center">
+    <p> © Les Farfadets Pimpants</p> 
+</div>
+
+
+
+
+
+</body>
+</html>
