@@ -14,6 +14,9 @@ public class Lampe {
         this.blue = blue;
     }
 
+    public Lampe() {
+    }
+
     public String getNom() {
         return nom;
     }
