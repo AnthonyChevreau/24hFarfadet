@@ -77,14 +77,15 @@ public class HelloWorldController {
 
         return "testihm2";
     }
-    @RequestMapping(value = "/test-ihm2", method = {RequestMethod.POST, RequestMethod.GET})
-    public String testIhm3Submit(@RequestParam(name="nom", required = false, defaultValue = "none") String nom, Lampe lampe) throws MqttException {
+    @RequestMapping(value = "/testihmBeau2", method = {RequestMethod.POST, RequestMethod.GET})
+    public String testIhm3Submit(@RequestParam(name="nom", required = false, defaultValue = "none") String nom,
+                                 @RequestParam(name="anime", required = false, defaultValue = "none") String choix,
+                                 Lampe lampe) throws MqttException {
 
 
         lampe.setNom(nom);
 
         System.out.println(lampe.getNom());
-
 
 
         connOpt = new MqttConnectOptions();
@@ -100,14 +101,49 @@ public class HelloWorldController {
         myClient.setCallback(call);
         myClient.connect(connOpt);
 
-        List<String> mesLampes = new ArrayList<String>();
-        mesLampes.add(lampe.getNom());
-        try {
-            anim.playActions(myClient, mesLampes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "testihm2";
-    }
 
+        List<String> mesLampes = new ArrayList<String>();
+        List<Integer> listInt = new ArrayList<Integer>();
+        mesLampes.add("Laumio_88813D");
+        mesLampes.add("Laumio_104F03");
+        mesLampes.add("Laumio_D454DB");
+        mesLampes.add("Laumio_CD0522");
+        mesLampes.add("Laumio_0FBFBF");
+
+        switch (choix) {
+            case "france":
+                listInt.add(3);
+                listInt.add(2);
+                listInt.add(1);
+                listInt.add(0);
+                listInt.add(3);
+                listInt.add(2);
+                listInt.add(1);
+                try {
+                    anim.playActions2(myClient, mesLampes, listInt);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "communisme":
+                listInt.add(1);
+                listInt.add(0);
+                listInt.add(1);
+                listInt.add(0);
+                listInt.add(1);
+                listInt.add(1);
+                listInt.add(1);
+                try {
+                    anim.playActions(myClient, mesLampes, listInt);
+                    break;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+        }
+        return("/testihmBeau2");
+
+
+    }
 }

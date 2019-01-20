@@ -239,5 +239,28 @@ public class Animation {
         }
     }
 
+    public void playActions2(MqttClient myClient, List<String> lampes, List<Integer> actions) throws Exception{
+
+        for(Integer i: actions) {
+            for(String l: lampes){
+                switch(i){
+                    case 0: this.lightOff(myClient, l);
+                        break;
+                    case 1: this.fill(myClient, l, 255, 0, 0);
+                        break;
+                    case 2: this.fill(myClient, l, 255, 255, 255);
+                        break;
+                    case 3: this.fill(myClient, l, 0, 0,255);
+                        break;
+                    case 4: this.animateRainbow(myClient, l);
+                        break;
+                    case 5: this.lightUp(myClient, l);
+                        break;
+                }
+            }
+            sleep(1000);
+        }
+    }
+
 
 }
